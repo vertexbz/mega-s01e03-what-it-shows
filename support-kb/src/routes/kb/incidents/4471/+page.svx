@@ -1,25 +1,28 @@
 ---
 layout: runbook
-title: '#4471 · dates parse mm/dd in eu locales'
-owner: support desk
-status: known
-reviewed: 2026-09-30
+title: "#4471 · two problems, not one"
+owner: Adam Makświej
+status: open
+reviewed: 2026-10-28
+signature: "Adam Makświej"
 ---
 
 <script>
   import CauseTable from '#lib/kb/CauseTable.svelte';
   import QueueTimeline from '#lib/kb/QueueTimeline.svelte';
   import Callout from '#lib/kb/Callout.svelte';
+  import RenderStamp from '#lib/kb/RenderStamp.svelte';
 </script>
 
 Since April, people have told us their bookings land on the wrong day: a month flipped. By
 4 October the desk had **412 reports**.
 
-**Merged as one issue.** The parser reads dates month first, and our tenants write the day
-first. The fix is queued.
+They were merged as one issue. That was wrong. The export shows **two** causes:
+**`parser` (379 reports)** and **`hint` (33 reports)**.
 
 <Callout>
-Known. One issue, one fix queued.
+#4471 closed 05 Oct. parser FIXED (`fix(dates): parse dd/mm for eu locales`).
+hint WON'T FIX (booking-v3 form retired).
 </Callout>
 
 ## What was merged
@@ -32,5 +35,7 @@ Known. One issue, one fix queued.
 
 ## Lessons
 
-- A big ticket is mostly one bug reported many times. Merge early, count once.
-- Write the page while the queue is still in your head.
+- Subject-only dedupe can merge two bugs into one ticket.
+- Split by cause before you mark known.
+
+<RenderStamp signature="Adam Makświej" />

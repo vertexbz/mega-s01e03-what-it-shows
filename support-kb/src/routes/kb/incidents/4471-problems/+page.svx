@@ -1,10 +1,10 @@
 ---
 layout: runbook
-title: '#4471 · two problems, not one'
+title: "#4471 · two problems, not one"
 owner: Adam Makświej
 status: open
 reviewed: 2026-10-28
-signature: Adam Makświej
+signature: "Adam Makświej"
 ---
 
 <script>
@@ -28,13 +28,9 @@ Not one issue. Two causes share #4471 because triage matched on subject alone
 
 ## What each cause is
 
-**`parser`** — The shared date parser always reads month first. Day-first tenants
-(app, email, and booking-v2 forms) send day-first values; the stored date flips.
-**379 reports.**
+**`parser`** — The shared date parser always reads month first. **379 reports.**
 
-**`hint`** — booking-v3 prints `MM/DD/YYYY` under the field. Day-first tenants type
-month first to match the hint; the form still parses the tenant’s day-first way.
-**33 reports.**
+**`hint`** — booking-v3 prints `MM/DD/YYYY`; form still reads day-first. **33 reports.**
 
 ## Engineering (desk update · #4471 closed 05 Oct)
 

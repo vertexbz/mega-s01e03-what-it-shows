@@ -10,12 +10,6 @@
       --accent: #2f6f5e; --warn: #b4501f; --warn-bg: #fbeee6; --note-bg: #eef5f2;
       --mono: ui-monospace, 'Cascadia Code', Menlo, monospace;
     }
-    @media (prefers-color-scheme: dark) {
-      :root {
-        --bg: #171716; --fg: #ecebe6; --muted: #9c9a93; --line: #34332f;
-        --accent: #6fbfa6; --warn: #f0905d; --warn-bg: #3a2418; --note-bg: #1d2c27;
-      }
-    }
     body { margin: 0; background: var(--bg); color: var(--fg); font: 16px/1.6 system-ui, sans-serif; }
     .kb { max-width: 760px; margin: 0 auto; padding: 2rem 16px 4rem; }
     .crumb { font: 0.8rem var(--mono); text-decoration: none; color: var(--muted); }
@@ -25,7 +19,6 @@
     table { border-collapse: collapse; width: 100%; margin: 1rem 0; font-size: 0.92rem; }
     th, td { border-bottom: 1px solid var(--line); padding: 0.35rem 0.5rem; text-align: left; }
     code { font-family: var(--mono); font-size: 0.88em; }
-    a { color: var(--accent); }
     .callout { background: var(--note-bg); padding: 0.75rem 1rem; border-radius: 6px; margin: 1rem 0; }
     .sum { font-size: 1.1rem; }
     .tags { color: var(--muted); font-size: 0.85em; }
@@ -40,7 +33,7 @@
 <body>
   <div class="kb">
     <header>
-      <a class="crumb" href="../support-kb/src/routes/kb/+page.svx">support desk · kb</a>
+      <a class="crumb" href="/kb">support desk · kb</a>
       <h1>#4471 · two problems, not one</h1>
       <p class="meta">
         <span>owner <b>Adam Makświej</b></span>
@@ -50,24 +43,20 @@
     </header>
     <main>
       <p>Ticket <strong>#4471</strong> was marked known as a single month/day parser bug. The export’s own
-      cause logic shows <strong>two</strong> problems were merged into that ticket. File one engineering
-      ticket per cause; do not keep them under one fix.</p>
-
+      cause logic shows <strong>two</strong> problems were merged into that ticket: <strong><code>parser</code> (379
+      reports)</strong> and <strong><code>hint</code> (33 reports)</strong>.</p>
       <div class="callout">
         Not one issue. Two causes share #4471 because triage matched on subject alone
         (decision 0001 · Duplicates share a subject line).
       </div>
-
       <h2>Causes in #4471</h2>
-
       <p class="sum"><strong>412</strong> reports merged into #4471 · <strong>2</strong> causes</p>
-
       <table>
         <thead>
           <tr><th>cause</th><th>reports</th><th>tagged as</th><th>tenants</th><th>seen</th><th></th></tr>
         </thead>
         <tbody>
-          <tr>
+          <tr class="">
             <td><code>parser</code></td>
             <td>379</td>
             <td class="tags">parser ×356 · hint ×23</td>
@@ -86,22 +75,18 @@
         </tbody>
       </table>
       <p class="note">5 reports read as a one-day move; filed under <code>parser</code> by tenant.</p>
-
       <h2>What each cause is</h2>
-
       <p><strong><code>parser</code></strong> — The shared date parser always reads month first. Day-first tenants
-      (app, email, and booking-v2 forms) send day-first values; the stored date flips.</p>
-
+      (app, email, and booking-v2 forms) send day-first values; the stored date flips.
+      <strong>379 reports.</strong></p>
       <p><strong><code>hint</code></strong> — booking-v3 prints <code>MM/DD/YYYY</code> under the field. Day-first tenants type
-      month first to match the hint; the form still parses the tenant’s day-first way. Wrong
-      day, different bug, different fix.</p>
-
+      month first to match the hint; the form still parses the tenant’s day-first way.
+      <strong>33 reports.</strong></p>
       <h2>Engineering (desk update · #4471 closed 05 Oct)</h2>
       <ul>
-        <li><code>parser</code> — <strong>FIXED</strong> — <code>fix(dates): parse dd/mm for eu locales</code> · 379 reports</li>
-        <li><code>hint</code> — <strong>WON'T FIX</strong> — booking-v3 form retired · 33 reports</li>
+        <li><code>parser</code> — <strong>FIXED</strong> — <code>fix(dates): parse dd/mm for eu locales</code></li>
+        <li><code>hint</code> — <strong>WON'T FIX</strong> — booking-v3 form retired</li>
       </ul>
-
       <p class="stamp">desk ref <b>DR-JKZA-TP8D</b></p>
     </main>
     <footer>Pages are written by people. Tables and charts are built from data at render time.</footer>

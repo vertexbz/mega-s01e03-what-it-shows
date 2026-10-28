@@ -11,8 +11,6 @@ signature: Adam Makświej
   import CauseTable from '#lib/kb/CauseTable.svelte';
   import Callout from '#lib/kb/Callout.svelte';
   import RenderStamp from '#lib/kb/RenderStamp.svelte';
-
-  let { signature } = $props();
 </script>
 
 Ticket **#4471** was marked known as a single month/day parser bug. The export’s own
@@ -43,4 +41,4 @@ month first to match the hint; the form still parses the tenant’s day-first wa
 - `parser` — **FIXED** — `fix(dates): parse dd/mm for eu locales`
 - `hint` — **WON'T FIX** — booking-v3 form retired
 
-<RenderStamp {signature} />
+<RenderStamp signature="Adam Makświej" />

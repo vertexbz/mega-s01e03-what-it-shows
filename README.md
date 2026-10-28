@@ -5,15 +5,15 @@ Public deliverable for MEGA.dev challenge **S01E03 · what it shows**.
 Support ticket **#4471** merged 412 date reports and marked them known as one bug.
 The kb export’s cause logic shows **two** problems:
 
-| cause | reports | what |
+| cause | reports | outcome (desk · closed 05 Oct) |
 | --- | ---: | --- |
-| `parser` | 379 | shared parser reads month-first; day-first tenants flip |
-| `hint` | 33 | booking-v3 shows `MM/DD/YYYY`; form still reads day-first |
+| `parser` | 379 | FIXED — `fix(dates): parse dd/mm for eu locales` |
+| `hint` | 33 | WON'T FIX — booking-v3 form retired |
 
 ## Deliverables
 
-- **Tickets:** GitHub issues in this repo — one per cause, with report counts
-- **Page (source):** `support-kb/src/routes/kb/incidents/4471-problems/+page.svx`
-- **Page (as the desk sees it):** [`rendered/4471-problems.html`](rendered/4471-problems.html)
+- **Tickets:** GitHub issues #1 (`parser`, completed) and #2 (`hint`, not planned)
+- **Page (source):** [`src/routes/kb/incidents/4471-problems/+page.svx`](src/routes/kb/incidents/4471-problems/+page.svx)
+- **Page (as the desk sees it):** [`src/routes/kb/incidents/4471-problems/as-the-desk-sees-it.html`](src/routes/kb/incidents/4471-problems/as-the-desk-sees-it.html)
 
-The `support-kb/` tree is the challenge kb export, plus the signed page above.
+This repo is the kb export (`apps/kb` → `src/`) plus the signed page and desk render above.

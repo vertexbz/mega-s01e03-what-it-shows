@@ -8,9 +8,8 @@
     owner,
     status,
     reviewed,
-    signature,
     children,
-  }: { title: string; owner: string; status: string; reviewed: Day; signature?: string; children: Snippet } = $props();
+  }: { title: string; owner: string; status: string; reviewed: Day; children: Snippet } = $props();
 
   const age = $derived(daysSince(reviewed));
   const stale = $derived(age > STALE_AFTER_DAYS);

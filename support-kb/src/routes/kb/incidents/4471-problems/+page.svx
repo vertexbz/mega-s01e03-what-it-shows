@@ -1,40 +1,51 @@
 ---
 layout: runbook
-title: "#4471 · two problems, not one"
+title: '#4471 · two problems, not one'
 owner: Adam Makświej
-status: open
+status: corrected
 reviewed: 2026-10-28
-signature: "Adam Makświej"
+signature: v1.eyJzdWIiOiI0NTU5IiwiYXVkIjoiY2hhbGxlbmdlOndoYXQtaXQtc2hvd3MiLCJpYXQiOjE3OTMyMDA3NjUsImV4cCI6MTc5MzI4NzE2NX0.B6B5eXvL8hZ2Ebr-rwSllHh4h1pdhCibTSGe-Ic3JEQ
 ---
 
 <script>
   import CauseTable from '#lib/kb/CauseTable.svelte';
   import Callout from '#lib/kb/Callout.svelte';
   import RenderStamp from '#lib/kb/RenderStamp.svelte';
+
+  let { signature } = $props();
 </script>
 
-Ticket **#4471** was marked known as a single month/day parser bug. The export’s own
-cause logic shows **two** problems were merged into that ticket: **`parser` (379
-reports)** and **`hint` (33 reports)**.
+Ticket **#4471** took in **412** unique date reports and treated them as one known parser bug.
+The cause table disagrees: the same queue holds **two** problems. Intake tags and subject-line
+dedupe hid the split.
 
-<Callout>
-Not one issue. Two causes share #4471 because triage matched on subject alone
-([decision 0001](/kb/decisions/0001-dedupe-by-subject)).
+<Callout kind="warn">
+Merged as one. Filed again as two — one GitHub ticket per cause, with its report count.
 </Callout>
 
-## Causes in #4471
+## What #4471 actually holds
 
 <CauseTable ticket={4471} />
 
-## What each cause is
+## Tickets filed (this repo)
 
-**`parser`** — The shared date parser always reads month first. **379 reports.**
+| cause | reports | GitHub issue | desk outcome (05 Oct) |
+| --- | ---: | --- | --- |
+| `parser` | 379 | [#1](https://github.com/vertexbz/mega-s01e03-what-it-shows/issues/1) | fixed — `fix(dates): parse dd/mm for eu locales` |
+| `hint` | 33 | [#2](https://github.com/vertexbz/mega-s01e03-what-it-shows/issues/2) | won't fix — booking-v3 form retired |
 
-**`hint`** — booking-v3 prints `MM/DD/YYYY`; form still reads day-first. **33 reports.**
+`parser` is every day-first tenant where the shared parser still reads month first (app, email,
+and booking-v2 form traffic). `hint` is only booking-v3 form traffic: the field prints
+`MM/DD/YYYY` while the tenant still reads day first, so people type month-first and the form
+flips it.
 
-## Engineering (desk update · #4471 closed 05 Oct)
+Five reports under `parser` were read on the desk as a one-day move; they stay with that cause
+by tenant.
 
-- `parser` — **FIXED** — `fix(dates): parse dd/mm for eu locales`
-- `hint` — **WON'T FIX** — booking-v3 form retired
+## Why the old page was wrong
 
-<RenderStamp signature="Adam Makświej" />
+The incident page for #4471 called this known and one fix. Subject-line merge made that look
+true. The components in this kb already know better — they group by tenant locale and form,
+not by intake tag.
+
+<RenderStamp {signature} />

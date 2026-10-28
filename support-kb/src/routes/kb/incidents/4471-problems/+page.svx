@@ -41,4 +41,4 @@ month first to match the hint; the form still parses the tenant’s day-first wa
 - `parser` — **FIXED** — `fix(dates): parse dd/mm for eu locales`
 - `hint` — **WON'T FIX** — booking-v3 form retired
 
-<RenderStamp {signature} />
+<RenderStamp signature="Adam Makświej" />

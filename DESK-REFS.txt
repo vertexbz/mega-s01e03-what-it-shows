@@ -1,0 +1,5 @@
+signature: Adam Makświej → desk ref DR-JKZA-TP8D
+signature: Adam Makswiej → desk ref DR-PQ86-FR95
+page: support-kb/src/routes/kb/incidents/4471-problems/+page.svx
+as seen: support-kb/src/routes/kb/incidents/4471-problems/+page.html
+video: https://github.com/vertexbz/mega-s01e03-what-it-shows/releases/download/s01e03-desk-view/desk-view.webm
